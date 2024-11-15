@@ -31,7 +31,10 @@
         <td><?= $row['sexo']; ?></td>
         <td><?= $row['nombre_del_cliente']; ?></td>
         <td><?= $row['fecha_de_nacimiento']; ?></td>
-      </tr> <?php } ?>
+        <td><a href="./modificar_formulario.php?mod=<?php print $row['id_mascota']; ?> ">Modificar</a></td>
+        <td><a href="./eliminar.php?eli=<?php print $row['id_mascota']; ?> ">Eliminar</a></td>
+      </tr>
+      <?php } ?>
   </table>
 </body>
 </html>

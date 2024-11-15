@@ -8,8 +8,16 @@
   <title>Document</title>
 </head>
 <body>
-<table>
     <?php include './menu.php'?>
+    <form method="POST" name="form1">
+    <div class="buscador">
+      <label for="buscar">ID: </label>
+      <input type="text" name="buscar" id="buscar" />
+      <input type="submit" value="Buscar" />
+    </div>
+  </form>
+  <?php if (isset($_POST['buscar'])) { ?>
+  <table>
     <tr>
       <th>ID</th>
       <th>Nombre</th>
@@ -20,9 +28,10 @@
       <th>Fecha de nacimiento</th>
     </tr>
     <?php
-    $sql = "SELECT * FROM mascotas";
-    $result = mysqli_query($link, $sql); //ejecuto la consulta
-    while ($row = mysqli_fetch_assoc($result)) { ?>
+      $sql = "SELECT * FROM mascotas WHERE id_mascota ='$_POST[buscar]'";
+      $result = mysqli_query($link, $sql); //ejecuto la consulta
+      while ($row = mysqli_fetch_assoc($result)) {
+      ?>
       <tr>
         <td><?= $row['id_mascota']; ?></td>
         <td><?= $row['nombre']; ?></td>
@@ -32,6 +41,6 @@
         <td><?= $row['nombre_del_cliente']; ?></td>
         <td><?= $row['fecha_de_nacimiento']; ?></td>
       </tr> <?php } ?>
-  </table>
+  </table><?php } ?>
 </body>
 </html>
